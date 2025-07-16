@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C35F672C6
-set_global_assignment -name TOP_LEVEL_ENTITY Principal
+set_global_assignment -name TOP_LEVEL_ENTITY Relogio2Min
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:29:15  JUNE 11, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.1
@@ -47,12 +47,16 @@ set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
 set_global_assignment -name VHDL_FILE DF.vhd
 set_global_assignment -name VHDL_FILE Decod7segmentos.vhd
-set_global_assignment -name VHDL_FILE Principal.vhd
-set_global_assignment -name VHDL_FILE Contador.vhd
+set_global_assignment -name VHDL_FILE FlipFlopD.vhd
+set_global_assignment -name VHDL_FILE RegistradorCargaParalela.vhd
+set_global_assignment -name VHDL_FILE SomadorCompleto.vhd
+set_global_assignment -name VHDL_FILE Somador4bits.vhd
+set_global_assignment -name VHDL_FILE CircuitoClearU.vhd
+set_global_assignment -name VHDL_FILE CircuitoClearD.vhd
+set_global_assignment -name VHDL_FILE Relogio2Min.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VHDL_FILE FFT.vhd
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
@@ -85,4 +89,4 @@ set_global_assignment -name VECTOR_WAVEFORM_FILE output_files/Waveform.vwf
 set_global_assignment -name SIMULATION_MODE FUNCTIONAL
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "C:/Users/Eletrônica/Downloads/unid2/unid2/output_files/Waveform.vwf"
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "C:/Users/Eletrï¿½nica/Downloads/unid2/unid2/output_files/Waveform.vwf"

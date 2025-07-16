@@ -13,7 +13,7 @@ entity Relogio2Min is
 end Relogio2Min;
 
 architecture arc of Relogio2Min is
-    component DF
+    component DivisorFrequencia
         port (
             clk_in:  in  std_logic;
             clk_out: out std_logic
@@ -68,12 +68,11 @@ architecture arc of Relogio2Min is
     signal seg_u, seg_d, min_u, min_d : std_logic_vector(3 downto 0);
     signal seg_u_next, seg_d_next, min_u_next, min_d_next : std_logic_vector(3 downto 0);
     signal clear_seg_u, clear_seg_d, clear_min_u, clear_min_d : std_logic;
-    signal carry_seg_u, carry_seg_d, carry_min_u : std_logic;
     signal reset_all : std_logic;
     
 begin
     -- Divisor de frequência para 1 Hz
-    div_freq: DF port map (CLK, clk_1hz);
+    div_freq: DivisorFrequencia port map (CLK, clk_1hz);
     
     -- Registradores para segundos (unidade)
     reg_seg_u: RegistradorCargaParalela 
@@ -92,7 +91,7 @@ begin
         B    => "0001",
         CIN  => '0',
         S    => seg_u_next,
-        COUT => carry_seg_u
+        COUT => open
     );
     
     -- Clear para segundos (unidade) - reseta quando chega a 10
@@ -115,7 +114,7 @@ begin
         B    => "0001",
         CIN  => '0',
         S    => seg_d_next,
-        COUT => carry_seg_d
+        COUT => open
     );
     
     -- Clear para segundos (dezena) - reseta quando chega a 6
@@ -138,7 +137,7 @@ begin
         B    => "0001",
         CIN  => '0',
         S    => min_u_next,
-        COUT => carry_min_u
+        COUT => open
     );
     
     -- Clear para minutos (unidade) - reseta quando chega a 10
@@ -191,20 +190,5 @@ begin
         HEX3(0), HEX3(1), HEX3(2), HEX3(3), HEX3(4), HEX3(5), HEX3(6)
     );
     
-    -- Lógica de carry entre dígitos
-    process(clear_seg_u, clear_seg_d, clear_min_u)
-    begin
-        if clear_seg_u = '1' and seg_d /= "0101" then
-            -- Incrementa dezena de segundo quando unidade reseta
-        end if;
-        
-        if clear_seg_d = '1' and min_u /= "1001" then
-            -- Incrementa unidade de minuto quando dezena de segundo reseta
-        end if;
-        
-        if clear_min_u = '1' and min_d /= "0001" then
-            -- Incrementa dezena de minuto quando unidade de minuto reseta
-        end if;
-    end process;
     
 end arc;
