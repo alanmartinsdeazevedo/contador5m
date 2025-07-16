@@ -1,14 +1,14 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity DivisorFrequencia is
+entity DF is
     port (
         clk_in: in std_logic;
         clk_out: out std_logic
     );
-end DivisorFrequencia;
+end DF;
     
-architecture arc of DivisorFrequencia is
+architecture arc of DF is
     signal contador : integer := 0;
     signal s_clk_out : std_logic := '0';
 begin

@@ -13,7 +13,7 @@ entity Relogio2Min is
 end Relogio2Min;
 
 architecture arc of Relogio2Min is
-    component DivisorFrequencia
+    component DF
         port (
             clk_in:  in  std_logic;
             clk_out: out std_logic
@@ -72,7 +72,7 @@ architecture arc of Relogio2Min is
     
 begin
     -- Divisor de frequência para 1 Hz
-    div_freq: DivisorFrequencia port map (CLK, clk_1hz);
+    div_freq: DF port map (CLK, clk_1hz);
     
     -- Registradores para segundos (unidade)
     reg_seg_u: RegistradorCargaParalela 
