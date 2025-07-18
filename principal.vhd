@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity Relogio2MinCompativel is
+entity principal is
     port (
         CLK : in  std_logic;
         HEX0: out std_logic_vector(6 downto 0);
@@ -10,9 +10,9 @@ entity Relogio2MinCompativel is
         HEX2: out std_logic_vector(6 downto 0);
         HEX3: out std_logic_vector(6 downto 0)
     );
-end Relogio2MinCompativel;
+end principal;
 
-architecture arch of Relogio2MinCompativel is
+architecture arch of principal is
     signal clk_1hz: std_logic;
     signal contador_segundos: integer range 0 to 119 := 0;
     signal seg_u, seg_d, min_u, min_d: integer range 0 to 9;
