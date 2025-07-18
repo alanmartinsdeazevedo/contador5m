@@ -6,14 +6,16 @@ entity Relogio2MinCompativel is
     port (
         CLK : in  std_logic;
         HEX0: out std_logic_vector(6 downto 0);
-        HEX1: out std_logic_vector(6 downto 0)
+        HEX1: out std_logic_vector(6 downto 0);
+        HEX2: out std_logic_vector(6 downto 0);
+        HEX3: out std_logic_vector(6 downto 0)
     );
 end Relogio2MinCompativel;
 
 architecture arch of Relogio2MinCompativel is
     signal clk_1hz: std_logic;
     signal contador_segundos: integer range 0 to 119 := 0;
-    signal seg_u, seg_d: integer range 0 to 9;
+    signal seg_u, seg_d, min_u, min_d: integer range 0 to 9;
     
     -- Divisor de frequência igual ao contador10s funcionando
     signal contador_div: integer := 0;
@@ -54,18 +56,26 @@ begin
         end if;
     end process;
     
-    -- Conversão para displays (apenas segundos nos 2 displays)
+    -- Conversão para displays MM:SS
     process(contador_segundos)
+        variable segundos_total: integer;
+        variable minutos_total: integer;
         variable segundos_restantes: integer;
     begin
-        segundos_restantes := contador_segundos mod 60;
+        segundos_total := contador_segundos;
+        minutos_total := segundos_total / 60;
+        segundos_restantes := segundos_total mod 60;
         
-        -- Segundos nos displays
+        -- Segundos
         seg_u <= segundos_restantes mod 10;
         seg_d <= segundos_restantes / 10;
+        
+        -- Minutos
+        min_u <= minutos_total mod 10;
+        min_d <= minutos_total / 10;
     end process;
     
-    -- Decodificadores para displays (igual ao contador10s)
+    -- Decodificadores para displays
     dec_seg_u: Decod7segmentos port map (
         std_logic_vector(to_unsigned(seg_u, 4))(3), std_logic_vector(to_unsigned(seg_u, 4))(2),
         std_logic_vector(to_unsigned(seg_u, 4))(1), std_logic_vector(to_unsigned(seg_u, 4))(0),
@@ -76,6 +86,18 @@ begin
         std_logic_vector(to_unsigned(seg_d, 4))(3), std_logic_vector(to_unsigned(seg_d, 4))(2),
         std_logic_vector(to_unsigned(seg_d, 4))(1), std_logic_vector(to_unsigned(seg_d, 4))(0),
         HEX1(0), HEX1(1), HEX1(2), HEX1(3), HEX1(4), HEX1(5), HEX1(6)
+    );
+    
+    dec_min_u: Decod7segmentos port map (
+        std_logic_vector(to_unsigned(min_u, 4))(3), std_logic_vector(to_unsigned(min_u, 4))(2),
+        std_logic_vector(to_unsigned(min_u, 4))(1), std_logic_vector(to_unsigned(min_u, 4))(0),
+        HEX2(0), HEX2(1), HEX2(2), HEX2(3), HEX2(4), HEX2(5), HEX2(6)
+    );
+    
+    dec_min_d: Decod7segmentos port map (
+        std_logic_vector(to_unsigned(min_d, 4))(3), std_logic_vector(to_unsigned(min_d, 4))(2),
+        std_logic_vector(to_unsigned(min_d, 4))(1), std_logic_vector(to_unsigned(min_d, 4))(0),
+        HEX3(0), HEX3(1), HEX3(2), HEX3(3), HEX3(4), HEX3(5), HEX3(6)
     );
     
 end arch;
