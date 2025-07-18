@@ -1,0 +1,44 @@
+# Quartus project output files
+/db/
+incremental_db/
+simulation/modelsim/
+*.rpt
+*.chg
+*.summary
+*.smsg
+*.qws
+*.qdf
+*.qdz
+*.sld
+*.sdc~
+*.bak
+*.vho
+*.vqm
+*.vo
+*.v
+*.svf
+*.jdi
+*.pin
+*.cdf
+*.pof
+*.sof
+*.jic
+*.ekp
+*.map
+*.smsg
+*.fsf
+*.wlf
+*.cmp
+*.hex
+*.ttf
+
+# Temporary files
+*.log
+*.tmp
+*~
+*.swp
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
