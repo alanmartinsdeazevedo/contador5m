@@ -101,7 +101,7 @@ begin
     reg_seg_d: RegistradorCargaParalela 
         generic map (WIDTH => 4)
         port map (
-            CLK  => clk_1hz,
+            CLK  => clear_seg_u,
             CLR  => clear_seg_d or RST or reset_all,
             LOAD => '1',
             D    => seg_d_next,
@@ -124,7 +124,7 @@ begin
     reg_min_u: RegistradorCargaParalela 
         generic map (WIDTH => 4)
         port map (
-            CLK  => clk_1hz,
+            CLK  => clear_seg_d,
             CLR  => clear_min_u or RST or reset_all,
             LOAD => '1',
             D    => min_u_next,
@@ -147,7 +147,7 @@ begin
     reg_min_d: RegistradorCargaParalela 
         generic map (WIDTH => 4)
         port map (
-            CLK  => clk_1hz,
+            CLK  => clear_min_u,
             CLR  => clear_min_d or RST or reset_all,
             LOAD => '1',
             D    => min_d_next,
