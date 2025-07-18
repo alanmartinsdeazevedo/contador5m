@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C35F672C6
-set_global_assignment -name TOP_LEVEL_ENTITY Relogio2MinTeste
+set_global_assignment -name TOP_LEVEL_ENTITY Relogio2MinCompativel
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:29:15  JUNE 11, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
@@ -53,15 +53,14 @@ set_global_assignment -name VHDL_FILE SomadorCompleto.vhd
 set_global_assignment -name VHDL_FILE Somador4bits.vhd
 set_global_assignment -name VHDL_FILE CircuitoClearU.vhd
 set_global_assignment -name VHDL_FILE CircuitoClearD.vhd
-set_global_assignment -name VHDL_FILE Relogio2MinTeste.vhd
+set_global_assignment -name VHDL_FILE Relogio2MinCompativel.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
-# Clock and Reset pins
+# Clock pin (igual ao contador10s)
 set_location_assignment PIN_N2 -to CLK
-set_location_assignment PIN_G26 -to RST
 
 # Seven Segment Display 0 (HEX0) - Segundos Unidade
 set_location_assignment PIN_AF10 -to HEX0[0]
@@ -80,24 +79,6 @@ set_location_assignment PIN_Y22 -to HEX1[3]
 set_location_assignment PIN_AA24 -to HEX1[4]
 set_location_assignment PIN_AA23 -to HEX1[5]
 set_location_assignment PIN_AB24 -to HEX1[6]
-
-# Seven Segment Display 2 (HEX2) - Minutos Unidade
-set_location_assignment PIN_AB23 -to HEX2[0]
-set_location_assignment PIN_V22 -to HEX2[1]
-set_location_assignment PIN_AC25 -to HEX2[2]
-set_location_assignment PIN_AC26 -to HEX2[3]
-set_location_assignment PIN_AB26 -to HEX2[4]
-set_location_assignment PIN_AB25 -to HEX2[5]
-set_location_assignment PIN_Y24 -to HEX2[6]
-
-# Seven Segment Display 3 (HEX3) - Minutos Dezena
-set_location_assignment PIN_Y23 -to HEX3[0]
-set_location_assignment PIN_AA25 -to HEX3[1]
-set_location_assignment PIN_AA26 -to HEX3[2]
-set_location_assignment PIN_Y26 -to HEX3[3]
-set_location_assignment PIN_Y25 -to HEX3[4]
-set_location_assignment PIN_U22 -to HEX3[5]
-set_location_assignment PIN_W24 -to HEX3[6]
 # I/O Standards
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_global_assignment -name SIMULATION_MODE FUNCTIONAL
