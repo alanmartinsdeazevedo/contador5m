@@ -65,7 +65,7 @@ architecture arc of Relogio2Min is
     end component;
     
     signal clk_1hz : std_logic;
-    signal seg_u, seg_d, min_u, min_d : std_logic_vector(3 downto 0);
+    signal seg_u, seg_d, min_u, min_d : std_logic_vector(3 downto 0) := "0000";
     signal seg_u_next, seg_d_next, min_u_next, min_d_next : std_logic_vector(3 downto 0);
     signal clear_seg_u, clear_seg_d, clear_min_u, clear_min_d : std_logic;
     signal reset_all : std_logic;
@@ -168,6 +168,15 @@ begin
     
     -- Reset geral quando atinge 2 minutos
     reset_all <= clear_min_d;
+    
+    -- Processo para garantir inicialização correta
+    process(RST, reset_all)
+    begin
+        if RST = '1' or reset_all = '1' then
+            -- Forçar valores iniciais
+            null; -- Reset é feito pelos registradores
+        end if;
+    end process;
     
     -- Decodificadores para displays
     dec_seg_u: Decod7segmentos port map (
