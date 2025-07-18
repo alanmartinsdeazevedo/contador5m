@@ -80,7 +80,7 @@ begin
         port map (
             CLK  => clk_1hz,
             CLR  => clear_seg_u or RST or reset_all,
-            LOAD => '1',
+            LOAD => not (clear_seg_u or RST or reset_all),
             D    => seg_u_next,
             Q    => seg_u
         );
@@ -103,7 +103,7 @@ begin
         port map (
             CLK  => clear_seg_u,
             CLR  => clear_seg_d or RST or reset_all,
-            LOAD => '1',
+            LOAD => not (clear_seg_d or RST or reset_all),
             D    => seg_d_next,
             Q    => seg_d
         );
@@ -126,7 +126,7 @@ begin
         port map (
             CLK  => clear_seg_d,
             CLR  => clear_min_u or RST or reset_all,
-            LOAD => '1',
+            LOAD => not (clear_min_u or RST or reset_all),
             D    => min_u_next,
             Q    => min_u
         );
@@ -149,7 +149,7 @@ begin
         port map (
             CLK  => clear_min_u,
             CLR  => clear_min_d or RST or reset_all,
-            LOAD => '1',
+            LOAD => not (clear_min_d or RST or reset_all),
             D    => min_d_next,
             Q    => min_d
         );
